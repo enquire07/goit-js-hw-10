@@ -5,9 +5,9 @@ const catInfoEl = document.querySelector('.cat-info');
 const loaderEl = document.querySelector('.loader');
 const errorEl = document.querySelector('.error');
 
-<<<<<<< HEAD
 errorEl.classList.add('is-hidden');
 
+//CREATE THE OPTIONS
 function chooseBreed() {
   fetchBreeds()
     .then(data => {
@@ -15,6 +15,7 @@ function chooseBreed() {
 
       let optionsMarkup = data.map(({ name, id }) => {
         return `<option value=${id}>${name}</option>`;
+        //<option value={catId} >Cat Name</option>
       });
       breedSelectEl.insertAdjacentHTML('beforeend', optionsMarkup);
       breedSelectEl.classList.remove('is-hidden');
@@ -25,7 +26,11 @@ function chooseBreed() {
 chooseBreed();
 
 breedSelectEl.addEventListener('change', e => {
+  //show loader while loading.
+
   loaderEl.classList.replace('is-hidden', 'loader');
+
+  //hide select element and cat info while loading.
 
   catInfoEl.classList.add('is-hidden');
 
@@ -36,7 +41,7 @@ breedSelectEl.addEventListener('change', e => {
       const { name, description, temperament } = breeds[0];
 
       catInfoEl.innerHTML = `
-            <img src='${url}' alt='{name}' width="460"/>
+            <img src='${url}' alt='{name}' width="400"/>
             <div class='box'>
                 <h2>${name}</h2>
                 <p>${description}</p>
@@ -50,13 +55,9 @@ breedSelectEl.addEventListener('change', e => {
 });
 
 function onError() {
+  //Show error message
   errorEl.classList.remove('is-hidden');
 
+  //hide select element
   breedSelectEl.classList.add('is-hidden');
-=======
-function chooseBreed() {
-  fetchBreeds().then(data => {
-    console.log(data);
-  });
->>>>>>> 65705f35aada4874dc16f83b523efcd8f8dc09e0
 }
